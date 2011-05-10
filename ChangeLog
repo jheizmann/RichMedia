@@ -1,5 +1,14 @@
 Rich Media extension ChangeLog
 =============================
+VERSION 1.5.1 patchlevel 1
+
+  FEATURE:
+  	
+  CHANGES:
+  	
+  BUGFIXES: 
+  	14592 - SemanticForms uses "for ... in" loops in its JavaScript (moved patch part from RM to SF)
+
 
 VERSION 1.5.1
 
