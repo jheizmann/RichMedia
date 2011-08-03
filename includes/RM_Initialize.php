@@ -163,6 +163,7 @@ function enableRichMediaExtension() {
  * @return bool
  */
 function smwfRMSetupExtension() {
+	wfProfileIn( __METHOD__ . ' [Rich Media]' );
 	global $wgHooks, $wgExtensionCredits, $wgAutoloadClasses, $wgSpecialPages; 
 	global $smwgRMIP, $wgSpecialPageGroups, $wgRequest, $wgContLang;
 
@@ -175,6 +176,7 @@ function smwfRMSetupExtension() {
 		'author'=>"Benjamin&nbsp;Langguth, Sascha&nbsp;Wagner and Daniel&nbsp;Hansch. Owned by [http://www.ontoprise.de ontoprise GmbH].", 
 		'url'=>'http://smwforum.ontoprise.com/smwforum/index.php/Help:Rich_Media_Extension',
 		'description' => 'The Rich Media Extension provides an ontology to allow easy handling of media such as documents, images, doc, pdf etc. The ontology comprises templates and forms and examples. It enhances a one-click media upload of files and enables annotation of media in a simple way.');
+	wfProfileOut( __METHOD__ . ' [Rich Media]' );
 
 	return true;
 }
@@ -241,6 +243,7 @@ function smwfProcessRMEmbedWindowLinkParserFunction(&$parser) {
  * @return boolean
  */
 function RMLinkBegin($this, $target, &$text, &$customAttribs, &$query, &$options, &$ret) {
+	wfProfileIn( __METHOD__ . ' [Rich Media]' );
 	global $wgNamespaceByExtension,$wgCanonicalNamespaceNames;
 
 	$ext = explode( '.', $target->mTextform );
@@ -264,6 +267,8 @@ function RMLinkBegin($this, $target, &$text, &$customAttribs, &$query, &$options
 	if($text) {
 		$text = str_replace('File:',$wgCanonicalNamespaceNames[$ns].":",$text);
 	}
+	wfProfileOut( __METHOD__ . ' [Rich Media]' );
+
 	return true;
 }
 
@@ -281,6 +286,7 @@ function RMLinkBegin($this, $target, &$text, &$customAttribs, &$query, &$options
  * @return boolean
  */
 function RMLinkEnd($skin, $target, $options, &$text, &$attribs, &$ret) {
+	wfProfileIn( __METHOD__ . ' [Rich Media]' );
 	global $wgRMImagePreview, $smwgRMPreviewWhitelist;
 
 	$temp_var = $target->getNamespace();
@@ -288,6 +294,7 @@ function RMLinkEnd($skin, $target, $options, &$text, &$attribs, &$ret) {
 	if ( $rMresult ) {
 		$file = wfFindFile($target);
 		if(!$file) {
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return true;
 		}
 		$ext = $file->getExtension();
@@ -313,7 +320,7 @@ function RMLinkEnd($skin, $target, $options, &$text, &$attribs, &$ret) {
 		$attribs['id'] = 'upload_window';
 		$attribs['class'] = 'rmAlink';
 	}
-
+	wfProfileOut( __METHOD__ . ' [Rich Media]' );
 	return true;
 }
 
@@ -325,15 +332,18 @@ function RMLinkEnd($skin, $target, $options, &$text, &$attribs, &$ret) {
  * @param $attribs
  */
 function RMLinkerMakeExternalLink(&$url, &$text, &$link, &$attribs) {
+	wfProfileIn( __METHOD__ . ' [Rich Media]' );
 	global $smwgRMScriptPath, $sfgScriptPath, $wgOut;
 	$uploadText = SpecialPage::getLocalNameFor( 'Upload' );
 	if(strpos($url, $uploadText)) {
 		$url = preg_replace('/'.$uploadText.'/', SpecialPage::getLocalNameFor( 'UploadWindow' ), $url, 1);
 		$attribs['class'] = 'rmAlink';
 		$link = '<a href="'.$url.'"'.Html::expandAttributes( $attribs ).'>'.$text.'</a>';
-
+		wfProfileOut( __METHOD__ . ' [Rich Media]' );
 		return false;
 	}
+	wfProfileOut( __METHOD__ . ' [Rich Media]' );
+
 	return true;
 }
 
@@ -441,6 +451,7 @@ function smwfRMInitUserMessages() {
  * Add appropriate JS language script
  */
 function smwfRMAddJSLanguageScripts(& $jsm, $mode = "all", $namespace = -1, $pages = array()) {
+	wfProfileIn( __METHOD__ . ' [Rich Media]' );
 	global $wgLanguageCode, $smwgRMScriptPath, $wgUser;
 	
 	// content language file
@@ -471,6 +482,7 @@ function smwfRMAddJSLanguageScripts(& $jsm, $mode = "all", $namespace = -1, $pag
 	} else {
 		$jsm->addScriptIf($smwgRMScriptPath . '/scripts/Language/SMWRM_LanguageUserEn.js', $mode, $namespace, $pages);
 	}
+	wfProfileOut( __METHOD__ . ' [Rich Media]' );
 }
 
 /**

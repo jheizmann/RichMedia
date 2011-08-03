@@ -37,6 +37,7 @@ class RMForm {
 	 * @return HTML
 	 */
 	static function createRichMediaForm($parser, &$parameter) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $wgOut;
 
 		$uploadWindowPage = SpecialPage::getPage('UploadWindow');
@@ -62,6 +63,7 @@ var wgRMUploadUrl = "{$uploadWindowUrl}";
 </script>
 END;
 		SMWOutputs::requireHeadItem('rmlinkheaditem', $fancybox_js);
+		wfProfileOut( __METHOD__ . ' [Rich Media]' );
 
 		return $parser->insertStripItem( $html, $parser->mStripState );
 	}
@@ -78,6 +80,7 @@ END;
 	 * @return HTML the text embraced by "richmedialink"-tags that will be removed again later in createRichMediaLinkAfterTidy
 	 */
 	static function createRichMediaLink($parser, &$parameters) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $wgOut, $wgRequest, $smwgRMFormByNamespace;
 		$rMUploadFormName = $smwgRMFormByNamespace['RMUpload'];
 
@@ -126,6 +129,8 @@ END;
 		$markercount = count($smwgRMMarkerList);
 		$marker = "x-richmedialink-x".$markercount."-x-richmedialink-x";
 		$smwgRMMarkerList[$markercount] = $output;
+		wfProfileOut( __METHOD__ . ' [Rich Media]' );
+
 		return $marker;
 	}
 
@@ -138,6 +143,7 @@ END;
 	 * @return bool
 	 */
 	static function createRichMediaLinkAfterTidy(&$parser, &$text) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $smwgRMMarkerList;
 		$keys = array();
 		$marker_count = count($smwgRMMarkerList);
@@ -147,6 +153,8 @@ END;
 		}
 
 		$text = str_replace($keys, $smwgRMMarkerList, $text);
+		wfProfileOut( __METHOD__ . ' [Rich Media]' );
+
 		return true;
 	}
 
@@ -161,6 +169,7 @@ END;
 	 * @return HTML
 	 */
 	static function createRichMediaEmbedWindowLink($parser, &$parameter) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $wgOut, $wgRequest, $wgUser;
 		global $wgRMImagePreview, $smwgRMPreviewWhitelist, $smwgRMIgnoreWhitelistForPF;
 
@@ -187,11 +196,13 @@ END;
 
 		$title = Title::newFromText($link_name);
 		if( !$title || !$title->exists() ) {
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return wfMsgNoTrans( 'smw_rm_filenotfound', $link_name);
 		}
 		$temp_var = $title->getNamespace();
 		$file = wfFindFile($title);
 		if ( !$file ) {
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return wfMsgNoTrans( 'smw_rm_filenotfound', $link_name);
 		}
 		$ext = $file->getExtension();
@@ -208,6 +219,8 @@ END;
 		} else {
 			$html = $wgUser->getSkin()->link($title, $link_title);
 		}
+		wfProfileOut( __METHOD__ . ' [Rich Media]' );
+
 		return $parser->insertStripItem( $html, $parser->mStripState );
 	}
 }

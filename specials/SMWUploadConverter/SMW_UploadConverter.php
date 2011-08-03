@@ -49,6 +49,7 @@ class UploadConverter {
 	 * 		true
 	 */
 	public static function convertUpload(&$uploadedFile) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $smwgRMIP, $smwgUploadConverterExternal;
 		require_once("$smwgRMIP/specials/SMWUploadConverter/SMW_UploadConverterSettings.php");
 		
@@ -105,6 +106,7 @@ class UploadConverter {
 				// set parser cache to previous value
 				$wgEnableParserCache = $enableParserCacheTemp;
 			}
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return true;
 		} else if(array_key_exists($mimeType, $smwgUploadConverterInternal)){
 			global $wgUploadConverterTemplateMapping;
@@ -133,15 +135,18 @@ class UploadConverter {
 				// set parser cache to previous value
 				$wgEnableParserCache = $enableParserCacheTemp;
 			}
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return true;
 		} else {
 			// no converter specified for the mime type
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return true;
 		}
 		
 	}
 	
 	public static function getFileContent(&$file) {
+		wfProfileIn( __METHOD__ . ' [Rich Media]' );
 		global $smwgRMIP;
 		require_once("$smwgRMIP/specials/SMWUploadConverter/SMW_UploadConverterSettings.php");
 		global $smwgUploadConverterExternal, $smwgUploadConverterInternal;
@@ -183,6 +188,7 @@ class UploadConverter {
 			} else {
 				$text = wfMsg('uc_not_converted', $mimeType, $converterApp);
 			}
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return $text;
 		} else if(array_key_exists($mimeType, $smwgUploadConverterInternal)){
 			global $wgUploadConverterTemplateMapping;
@@ -199,10 +205,12 @@ class UploadConverter {
 			$converter = new $class($text);
 			$text = $converter->getConvertedText();
 			$wgUploadConverterTemplateMapping = $tmp;
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return $text;
 			  
 		} else {
 			// no converter specified for the mime type
+			wfProfileOut( __METHOD__ . ' [Rich Media]' );
 			return "";
 		}
 	}
