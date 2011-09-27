@@ -801,7 +801,7 @@
     <title>Category:Image</title>
     <id>73</id>
     <revision>
-      <timestamp>2011-07-06T12:40:01Z</timestamp>
+      <timestamp>2011-09-27T11:51:50Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -809,20 +809,21 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMImage| ]]
 [[Rationale::This category is used to identify all images]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|Image]]</text>
-    <hash>903eae239e3588348ed5ef1bf1c68ff2</hash>
+    <hash>34d19ca04d308dde9ca002ee132842be</hash>
     </revision>
   </page>
   <page>
     <title>Category:Pdf</title>
     <id>74</id>
     <revision>
-      <timestamp>2011-07-06T12:41:32Z</timestamp>
+      <timestamp>2011-09-27T11:52:42Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -830,20 +831,21 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMPdf| ]]
 [[Rationale::This category is used to identify all PDF documents.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|Media]]</text>
-    <hash>a15f041167636e9c463896b8e6ee7940</hash>
+    <hash>d1261289b3d8fbe381c81e15335bd044</hash>
     </revision>
   </page>
   <page>
     <title>Category:Document</title>
     <id>75</id>
     <revision>
-      <timestamp>2011-07-06T12:38:45Z</timestamp>
+      <timestamp>2011-09-27T11:53:21Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -851,20 +853,21 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMDocument| ]]
 [[Rationale::This category is used to identify all documents.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|Document]]</text>
-    <hash>b30807e50de8d0ca3b581776cb01cf4e</hash>
+    <hash>fc27a9eb765e0efb948bb91924bdd785</hash>
     </revision>
   </page>
   <page>
     <title>Category:Audio</title>
     <id>76</id>
     <revision>
-      <timestamp>2011-07-06T12:37:50Z</timestamp>
+      <timestamp>2011-09-27T11:50:28Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -872,20 +875,21 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMAudio| ]]
 [[Rationale::This category is used to identify all audio documents.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|Media]]</text>
-    <hash>3728b103b269475b050bce5d1d1e3674</hash>
+    <hash>7e24943540cd38cc4585986e3cd5a599</hash>
     </revision>
   </page>
   <page>
     <title>Category:Video</title>
     <id>77</id>
     <revision>
-      <timestamp>2011-07-06T12:42:46Z</timestamp>
+      <timestamp>2011-09-27T11:53:51Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -893,13 +897,14 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMVideo| ]]
 [[Rationale::This category is used to identify video files.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|Video]]</text>
-    <hash>bb0256583b62f61231173b6b1ee375cc</hash>
+    <hash>97c290e7845ad30b73e4d50d7e5873ac</hash>
     </revision>
   </page>
   <page>
@@ -1149,7 +1154,7 @@
     <title>Category:ICalendar</title>
     <id>91</id>
     <revision>
-      <timestamp>2011-07-06T12:39:25Z</timestamp>
+      <timestamp>2011-09-27T11:56:11Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -1157,20 +1162,21 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMICalendar| ]]
 [[Rationale::This category is used to identify all calendars.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|ICalendar]]</text>
-    <hash>42e5908545783b6e778a9c5adb08f065</hash>
+    <hash>c8b6cd7d83bd55c6cca1b7c8d14f9b24</hash>
     </revision>
   </page>
   <page>
     <title>Category:VCard</title>
     <id>92</id>
     <revision>
-      <timestamp>2011-07-06T12:42:01Z</timestamp>
+      <timestamp>2011-09-27T11:55:24Z</timestamp>
       <contributor>
         <username>WikiSysop</username>
         <id>1</id>
@@ -1178,13 +1184,14 @@
       <text xml:space="preserve">{{Category}}
  __NOTOC__  __NOEDITSECTION__
 == Information about this category ==
+[[Has default form::Form:RMVCard| ]]
 [[Rationale::This category is used to identify all VCards.]]
 [[No automatic formedit::true]]
 {{Part of bundle|value=Richmedia}}
 {{Content hash|value=}}
 
 [[Category:Media|VCard]]</text>
-    <hash>8e2d17d9994665d5ca6dbf40a67d2f4c</hash>
+    <hash>0af6012379c99d7e2ad06b6e441cd9a3</hash>
     </revision>
   </page>
   <page>

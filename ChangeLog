@@ -1,6 +1,17 @@
 Rich Media extension ChangeLog
 =============================
 
+VERSION 1.5.2-1
+
+  FEATURES:
+	-none-
+
+  CHANGES:
+	-none-
+
+  BUGFIXES:
+	* 15709 - Cannot edit exiting files because "has default form" annotation missing
+
 VERSION 1.5.2
 
   FEATURES:
