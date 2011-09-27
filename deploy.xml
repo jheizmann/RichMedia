@@ -2,6 +2,7 @@
 <deploydescriptor>
 	<global>
 		<version>152</version>
+		<patchlevel>1</patchlevel>
 		<id>richmedia</id>
 		<license>GPL-v2</license>
 		<vendor>ontoprise GmbH</vendor>
