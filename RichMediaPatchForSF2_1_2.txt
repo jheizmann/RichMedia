@@ -1,6 +1,6 @@
 Index: extensions/SemanticForms/specials/SF_FormEdit.php
 ===================================================================
---- extensions/SemanticForms/specials/SF_FormEdit.php	(revision 11977)
+--- extensions/SemanticForms/specials/SF_FormEdit.php	(revision 12312)
 +++ extensions/SemanticForms/specials/SF_FormEdit.php	(working copy)
 @@ -139,9 +139,23 @@
  					$page_is_source = ( $page_contents != null );
@@ -28,7 +28,7 @@ Index: extensions/SemanticForms/specials/SF_FormEdit.php
  
 Index: extensions/SemanticForms/specials/SF_UploadWindow.php
 ===================================================================
---- extensions/SemanticForms/specials/SF_UploadWindow.php	(revision 11977)
+--- extensions/SemanticForms/specials/SF_UploadWindow.php	(revision 12312)
 +++ extensions/SemanticForms/specials/SF_UploadWindow.php	(working copy)
 @@ -40,7 +40,8 @@
  	global $wgRequest, $wgOut, $wgUser, $wgServer;
@@ -948,7 +948,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow.php
  }
 Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
 ===================================================================
---- extensions/SemanticForms/specials/SF_UploadWindow2.php	(revision 11977)
+--- extensions/SemanticForms/specials/SF_UploadWindow2.php	(revision 12312)
 +++ extensions/SemanticForms/specials/SF_UploadWindow2.php	(working copy)
 @@ -70,8 +70,13 @@
  
@@ -1005,25 +1005,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		) );
  		$form->setTitle( $this->getTitle() );
  
-@@ -296,6 +318,17 @@
- 	protected function uploadWarning( $warnings ) {
- 		global $wgUser;
- 
-+		# If there are no warnings, or warnings we can ignore, return early.
-+		# mDestWarningAck is set when some javascript has shown the warning
-+		# to the user. mForReUpload is set when the user clicks the "upload a
-+		# new version" link.
-+		if ( !$warnings || ( count( $warnings ) == 1 && 
-+			isset( $warnings['exists'] ) && 
-+			( $this->mDestWarningAck || $this->mForReUpload ) ) )
-+		{
-+			return false;
-+		}
-+
- 		$sessionKey = $this->mUpload->stashSession();
- 
- 		$sk = $wgUser->getSkin();
-@@ -328,7 +361,56 @@
+@@ -328,7 +350,56 @@
  		$form->setSubmitText( wfMsg( 'upload-tryagain' ) );
  		$form->addButton( 'wpUploadIgnoreWarning', wfMsg( 'ignorewarning' ) );
  		$form->addButton( 'wpCancelUpload', wfMsg( 'reuploaddesc' ) );
@@ -1080,7 +1062,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		$this->showUploadForm( $form );
  	}
  
-@@ -397,11 +479,57 @@
+@@ -397,11 +468,57 @@
  		}
  
  		$basename = str_replace( '_', ' ', $basename );
@@ -1140,7 +1122,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  END;
  		} else {
  			$output .= <<<END
-@@ -421,15 +549,34 @@
+@@ -421,15 +538,34 @@
  				parent.document.getElementById("{$this->mInputID}").value += '{$this->mDelimiter} $basename{$this->mDelimiter} ';
  			}
  		}
@@ -1179,7 +1161,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		print $output;
  		$img = null; // @todo: added to avoid passing a ref to null - should this be defined somewhere?
  
-@@ -694,7 +841,49 @@
+@@ -694,7 +830,49 @@
  		}
  	}
  
@@ -1229,7 +1211,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  
  /**
   * Sub class of HTMLForm that provides the form section of SpecialUpload
-@@ -705,7 +894,14 @@
+@@ -705,7 +883,14 @@
  	protected $mSessionKey;
  	protected $mHideIgnoreWarning;
  	protected $mDestWarningAck;
@@ -1244,7 +1226,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  	protected $mSourceIds;
  
  	public function __construct( $options = array() ) {
-@@ -717,6 +913,12 @@
+@@ -717,6 +902,12 @@
  				? $options['sessionkey'] : '';
  		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
  		$this->mDestFile = isset( $options['destfile'] ) ? $options['destfile'] : '';
@@ -1257,7 +1239,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  
  		$sourceDescriptor = $this->getSourceSection();
  		$descriptor = $sourceDescriptor
-@@ -779,12 +981,12 @@
+@@ -779,12 +970,12 @@
  				'label-message' => 'sourcefilename',
  				'upload-type' => 'File',
  				'radio' => &$radio,
@@ -1272,7 +1254,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  				'checked' => $selectedSourceType == 'file',
  		);
  		if ( $canUploadByUrl ) {
-@@ -805,12 +1007,12 @@
+@@ -805,12 +996,12 @@
  		}
  		wfRunHooks( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ) );
  
@@ -1287,7 +1269,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		return $descriptor;
  	}
  
-@@ -915,6 +1117,13 @@
+@@ -915,6 +1106,13 @@
  				'label-message' => 'filesource',
  			);
  		}
@@ -1301,7 +1283,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  
  		return $descriptor;
  	}
-@@ -960,7 +1169,175 @@
+@@ -960,7 +1158,175 @@
  	 */
  	public function show() {
  		$this->addUploadJS();
@@ -1477,7 +1459,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		// disable $wgOut - we'll print out the page manually,
  		// taking the body created by the form, plus the necessary
  		// Javascript files, and turning them into an HTML page
-@@ -972,6 +1349,34 @@
+@@ -972,6 +1338,34 @@
  		$sk->initPage( $wgOut ); // need to call this to set skin name correctly
  		$wgTitle = SpecialPage::getTitleFor( 'Upload' );
  
@@ -1512,7 +1494,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  		if ( method_exists( $wgOut, 'addModules' ) ) {
  			$head_scripts = '';
  			$wgOut->addModules( array( 'mediawiki.legacy.edit', 'mediawiki.legacy.upload', 'mediawiki.legacy.wikibits', 'mediawiki.legacy.ajax' ) );
-@@ -1005,6 +1410,9 @@
+@@ -1005,6 +1399,9 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <head>
  $head_scripts
@@ -1524,7 +1506,7 @@ Index: extensions/SemanticForms/specials/SF_UploadWindow2.php
  {$wgOut->getHTML()}
 Index: extensions/SemanticForms/includes/SF_FormPrinter.php
 ===================================================================
---- extensions/SemanticForms/includes/SF_FormPrinter.php	(revision 11977)
+--- extensions/SemanticForms/includes/SF_FormPrinter.php	(revision 12312)
 +++ extensions/SemanticForms/includes/SF_FormPrinter.php	(working copy)
 @@ -832,6 +832,19 @@
  								$field_args['cols'] = 80;
